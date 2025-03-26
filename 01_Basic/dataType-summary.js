@@ -31,3 +31,31 @@ const myFunction = function(){
 }
 
 console.log(typeof anotherId);
+
+
+// ****************************Memory*******************************//
+
+// Stack , Heap  Memory
+
+// All Primitive type are used in Stack memory
+// All Non-primitive type are used in Heap memory
+
+let myName = "Suraj"
+
+let anotherName = myName
+anotherName = "Suhani"
+
+console.log(anotherName);
+console.log(myName);
+
+let userOne = {
+    email : "user13213@gmail.com",
+    upi : "user@809985ybl" 
+}
+
+let userTwo = userOne
+
+userTwo.email = "suhani1409@gmail.com"
+
+console.log(userOne.email);
+console.log(userTwo.email);
