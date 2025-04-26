@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    //insted of using onclick we can use eventlistener back using onclick it give some less feature and problem to remove we use eventlistener 
+    //appoarch - 1
+    // document.getElementById('owl').onclick = function(){
+    //     alert("Hello Owl")
+    // }
+
+    //appoarch - 2 -> using eventlistener it provide much feature like to select keyword or etc!
+    //the third parameter is a default parameter so it is not written and 
+    // document.getElementById('owl').addEventListener('click' , function(){
+    //     alert('Owl Clicked')
+    // })
+
+    //appoarch - 3 -> using attachEvent  , jQuery - on (event hota hai)
+
+    //when we work on event there some things that are removed like alert message instsed we use (event object)
+    // document.getElementById('owl').addEventListener('click' , function(e){
+    //     console.log(e); 
+    // } , false)
+    //what we have to study 
+    //type , timestamp , defaultPrevented
+    //target , toElement , imp(scrElement) , currentTarget , 
+    //for interview -> clientX , clientY , screenX , screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    //what is the main of false or if we write true these is called eventPrapogation -> They have two context
+    //1. eventPublic -> they used as a default -> false 
+    //2. eventCapturing -> true -> top to bottom
+    //example1 code->
+    // document.getElementById('images').addEventListener('click' , function(e){
+    //     console.log("Click inside the URL");
+    // } , false)
+    // //example2
+    // //to seperate the inner element we use stopPrapogation
+    // document.getElementById('owl').addEventListener('click' , function(e){
+    //     console.log("Owl Clicked");
+    //     e.stopPropagation();
+    // } , false)
+
+    //now we see about google -> here we use event preventDefault
+    // document.getElementById('google').addEventListener('click' , function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     console.log('google clicked');
+    // },false)
+
+    //now we select specific item
+    document.querySelector('#images').addEventListener('click' , function(e){
+        console.log(e.target.tagName);
+        if(e.target.tagName === 'IMG'){
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode
+            removeIt.remove()
+        }
+        //to remove image
+        // let removeIt = e.target.parentNode
+        // removeIt.remove()
+        // removeIt.parentNode.removeChild(removeIt)
+    } ,false)
+
+</script>
+</html>
